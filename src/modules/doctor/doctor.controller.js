@@ -266,7 +266,7 @@ function getCall(req, res) {
 function acceptCall(req, res) {
     const result = videoCallService.acceptCall(
         req.user,
-        req.params.callSessionId
+        req.params.appointmentId
     );
 
     if (result?.error) {
@@ -290,11 +290,10 @@ function acceptCall(req, res) {
     });
 }
 
-
 function rejectCall(req, res) {
     const result = videoCallService.rejectCall(
         req.user,
-        req.params.callSessionId,
+        req.params.appointmentId,
         req.body?.reason
     );
 
@@ -319,11 +318,10 @@ function rejectCall(req, res) {
     });
 }
 
-
 function endCall(req, res) {
     const result = videoCallService.endCall(
         req.user,
-        req.params.callSessionId
+        req.params.appointmentId
     );
 
     if (result?.error) {
@@ -346,7 +344,6 @@ function endCall(req, res) {
         data: result
     });
 }
-
 
 // =====================================================
 // EXPORT
