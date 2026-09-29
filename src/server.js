@@ -35,7 +35,7 @@ app.use((req, res, next) => {
 
 const apiInfo = (req, res) => res.json({
     success: true,
-    message: 'Vandycins Backend API is running.',
+    message: 'VandyCare Backend API is running.',
     version: '2.0.0',
     docs: '/v1/api-docs',
     openapi: '/v1/api-docs.json'
@@ -47,7 +47,7 @@ app.get('/v1/', apiInfo);
 
 const healthInfo = (req, res) => res.json({
     status: 'ok',
-    service: 'Vandycins Backend API',
+    service: 'VandyCare Backend API',
     version: '2.0.0',
     webrtcSignalingAvailable: true,
     turnConfigured: Boolean(

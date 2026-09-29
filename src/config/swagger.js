@@ -2,7 +2,7 @@ const swaggerDefinition = {
     openapi: '3.0.3',
 
     info: {
-        title: 'Vandycins Backend API',
+        title: 'VandyCare Backend API',
         version: '2.0.0',
         description:
             'OpenAPI documentation for the Patient mobile, Doctor portal, and Admin panel APIs.'
@@ -10,7 +10,7 @@ const swaggerDefinition = {
 
     servers: [
         {
-            url: 'https://vandycinsapis.vandymondglobal.in',
+            url: 'https://vandycareapis.vandytrust.com',
             description: 'Production server'
         },
         {

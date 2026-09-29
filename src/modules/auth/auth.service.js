@@ -24,7 +24,7 @@ function ensureDoctorProfile(user) {
             id: user.id,
             name: user.name || 'Dr. Test Doctor',
             specialty: 'General Physician',
-            clinic_name: 'VandyCins Telehealth Clinic',
+            clinic_name: 'VandyCare',
             registration_number: `TEST-${user.id}`,
             rating: 5.0,
             experience_years: 1,

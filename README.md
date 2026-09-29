@@ -1,4 +1,4 @@
-# Vandycins WebRTC & REST Backend (Node.js)
+# VandyCare WebRTC & REST Backend (Node.js)
 
 Node.js REST API and authenticated WebRTC signaling service for the Telehealth Android application and doctor browser.
 
