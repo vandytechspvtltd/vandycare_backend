@@ -13,7 +13,7 @@ const config = {
     turnCredentialTtlSeconds: Math.max(60, Number(process.env.TURN_CREDENTIAL_TTL_SECONDS || 3600)),
     jwtSecret: (process.env.JWT_SECRET || '').trim(),
     jwtAccessSecret: (process.env.JWT_ACCESS_SECRET || process.env.JWT_SECRET || '').trim(),
-    jwtAccessExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN || process.env.ACCESS_TOKEN_TTL || '15m',
+    jwtAccessExpiresIn: process.env.JWT_ACCESS_EXPIRES_IN || process.env.ACCESS_TOKEN_TTL || '1m',
     jwtRefreshSecret: (process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET || '').trim(),
     jwtRefreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '30d',
     adminEmail: (process.env.ADMIN_EMAIL || '').trim().toLowerCase(),
