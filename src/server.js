@@ -50,11 +50,14 @@ app.use(express.json());
  * Example:
  * https://your-domain.com/uploads/profile/image.jpg
  */
+const uploadsPath = path.join(
+    process.cwd(),
+    'uploads'
+);
+
 app.use(
     '/uploads',
-    express.static(
-        path.join(__dirname, 'uploads')
-    )
+    express.static(uploadsPath)
 );
 
 /* =========================================================
