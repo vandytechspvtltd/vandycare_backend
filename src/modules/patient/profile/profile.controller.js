@@ -1,6 +1,5 @@
 const profileService = require('./profile.service');
 
-
 function getProfile(req, res) {
 
     const profile = profileService.getProfile(req.user.id);
@@ -12,7 +11,6 @@ function getProfile(req, res) {
     });
 }
 
-
 function saveProfile(req, res) {
 
     const input = {
@@ -20,9 +18,8 @@ function saveProfile(req, res) {
     };
 
     if (req.file) {
-        const baseUrl = `${req.protocol}://${req.get('host')}`;
-
-        input.image = `${baseUrl}/uploads/profile/${req.file.filename}`;
+        input.image =
+            `https://vandycareapis.vandytrust.com/uploads/profile/${req.file.filename}`;
     }
 
     const profile = profileService.saveProfile(
