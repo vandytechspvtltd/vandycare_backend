@@ -12,6 +12,7 @@ function getProfile(req, res) {
     });
 }
 
+
 function saveProfile(req, res) {
 
     const input = {
@@ -19,7 +20,9 @@ function saveProfile(req, res) {
     };
 
     if (req.file) {
-        input.image = `/uploads/profile/${req.file.filename}`;
+        const baseUrl = `${req.protocol}://${req.get('host')}`;
+
+        input.image = `${baseUrl}/uploads/profile/${req.file.filename}`;
     }
 
     const profile = profileService.saveProfile(
