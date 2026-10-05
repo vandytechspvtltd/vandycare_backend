@@ -5,6 +5,8 @@ const controller = require('./admin.controller');
 
 const router = express.Router();
 router.post('/login', controller.login);
+router.post('/refresh', controller.refresh);
+router.post('/refresh-token', controller.refresh);
 router.use(authenticate, requireRole('ADMIN'));
 router.get('/doctors/pending', controller.pendingDoctors);
 router.get('/doctors', controller.doctors);

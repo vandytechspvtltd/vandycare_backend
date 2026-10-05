@@ -72,7 +72,7 @@ function revokeAllRefreshTokens(userId) {
     database.refreshTokens.filter(item => item.userId === userId && !item.revokedAt).forEach(item => { item.revokedAt = revokedAt; });
 }
 
-function rotateRefreshToken(token) {
+function rotateRefreshToken(token, expectedRole) {
     if (!token || typeof token !== 'string' || token.length > 4096) throw new Error('Invalid or expired refresh token');
     let payload;
     try { payload = jwt.verify(token, config.jwtRefreshSecret); } catch (error) { throw new Error('Invalid or expired refresh token'); }
@@ -80,7 +80,7 @@ function rotateRefreshToken(token) {
     const record = database.refreshTokens.find(item => item.id === payload.jti && item.tokenHash === hashRefreshToken(token));
     if (!record || record.revokedAt || new Date(record.expiresAt).getTime() <= Date.now()) throw new Error('Invalid or expired refresh token');
     const user = database.users[payload.sub];
-    if (!user || user.role !== payload.role) throw new Error('Invalid or expired refresh token');
+    if (!user || user.role !== payload.role || (expectedRole && user.role !== expectedRole)) throw new Error('Invalid or expired refresh token');
     record.revokedAt = new Date().toISOString();
     return { user, accessToken: createAccessToken(user), refreshToken: createRefreshToken(user) };
 }

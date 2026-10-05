@@ -19,7 +19,12 @@ function login(emailInput, password) {
     if (!config.adminEmail || !safeAdminPassword(password) || email !== config.adminEmail) return { error: [401, 'Invalid admin credentials.'] };
     const user = database.users.admin_1 || { id: 'admin_1', email: config.adminEmail, role: 'ADMIN', name: 'Administrator', isActive: true };
     database.users.admin_1 = user;
-    return { data: { accessToken: authService.createAccessToken(user), user } };
+    return { data: { accessToken: authService.createAccessToken(user), refreshToken: authService.createRefreshToken(user), user } };
+}
+
+function refresh(token) {
+    try { return { data: authService.rotateRefreshToken(token, 'ADMIN') }; }
+    catch (error) { return { error: [401, 'Invalid or expired refresh token'] }; }
 }
 
 function doctorDetails(registration) {
@@ -100,4 +105,4 @@ function patientDetails(user) {
 function listPatients() { return Object.values(database.users).filter(user => user.role === 'PATIENT').map(patientDetails); }
 function getPatient(id) { const user = database.users[id]; return user && user.role === 'PATIENT' ? patientDetails(user) : null; }
 
-module.exports = { login, listPendingDoctors, getDoctor, approveDoctor, rejectDoctor, setDoctorActive, listDoctors, listPatients, getPatient };
+module.exports = { login, refresh, listPendingDoctors, getDoctor, approveDoctor, rejectDoctor, setDoctorActive, listDoctors, listPatients, getPatient };
